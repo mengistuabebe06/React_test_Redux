@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchRandomPoints } from "../../apiService";
 import { Scatter } from "react-chartjs-2";
 import styled from "styled-components";
 import { Chart, registerables } from "chart.js";
+import { useDispatch, useSelector } from "react-redux";
+import { listExcelPoints } from "../../action/randomgraphAction";
+
 Chart.register(...registerables);
 
 const ChartWrapper = styled.div`
@@ -12,36 +14,35 @@ const ChartWrapper = styled.div`
 `;
 
 const ExcelRandomPointsList = () => {
+  const dispatch = useDispatch();
+  const excelpointsData = useSelector((state) => state.listExcel);
+  const { loading, error, success, excelpoints } = excelpointsData;
+  console.log("excel data");
+  console.log(excelpoints);
+
   const [pointsData, setPointsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [fetchError, setFetchError] = useState(null); // Renamed from 'error' to 'fetchError'
+
+  const sendpointData = {
+    side: 100,
+    selection: 5,
+    choice: 0,
+    value: 10,
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const pointData = {
-          side: 10,
-          selection: 5,
-        };
-        const {
-          success,
-          response: responseData,
-          error,
-        } = await fetchRandomPoints(pointData)();
-        if (success && responseData.listOfPoints) {
-          setPointsData(responseData.listOfPoints.map(([x, y]) => ({ x, y })));
-        } else {
-          setError(error || "Error fetching random points");
-        }
-      } catch (error) {
-        setError("Error fetching random points");
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(listExcelPoints(sendpointData));
+  }, [dispatch]);
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    if (success && excelpoints?.response?.listOfPoints) {
+      setPointsData(
+        excelpoints?.response?.listOfPoints?.map(([x, y]) => ({ x, y }))
+      );
+    } else {
+      setFetchError(error || "Error fetching random points"); // Updated state setter
+    }
+  }, [success, excelpoints, error]);
 
   const chartData = {
     datasets: [
@@ -69,7 +70,7 @@ const ExcelRandomPointsList = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (fetchError) return <div>Error: {fetchError}</div>; // Updated to use 'fetchError'
 
   return (
     <ChartWrapper>
@@ -77,4 +78,5 @@ const ExcelRandomPointsList = () => {
     </ChartWrapper>
   );
 };
+
 export default ExcelRandomPointsList;

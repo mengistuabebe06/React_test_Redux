@@ -8,7 +8,7 @@ import {
   RANDOMGRAPH_FIELD_LIST_REQUEST,
   RANDOMGRAPH_FIELD_LIST_SUCCESS,
 } from "../constants/randomgraphConstants";
-import { GRAPH_URL } from "../env";
+// import { GRAPH_URL} from "../env";
 
 export const listFieldPoints = (pointData) => async (dispatch) => {
   dispatch({

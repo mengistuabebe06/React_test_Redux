@@ -21,6 +21,7 @@ export const FieldPointsListReducer = (
       return {
         ...state,
         loading: false,
+        success: true,
         filedpoints: action.payload,
       };
     case RANDOMGRAPH_FIELD_LIST_FAIL:
@@ -49,6 +50,7 @@ export const ExcelPointsListReducer = (
       return {
         ...state,
         loading: false,
+        success: true,
         excelpoints: action.payload,
       };
     case RANDOMGRAPH_EXCEL_LIST_FAIL:
