@@ -70,16 +70,16 @@ const ListFieldRandomPoints = () => {
   if (fetchError) return <div>Error: {fetchError}</div>;
 
   return (
-    // <ChartWrapper>
-    //   <Scatter data={chartData} options={chartOptions} />
-    // </ChartWrapper>
-
-    <div>
-      <ChartWrapper>
-        <Scatter data={chartData} options={chartOptions} />
-      </ChartWrapper>
-      <div>
-        <NavLink to="/excel">Visual Excel Point Data </NavLink>
+    <div className="container">
+      <div className="chart-container">
+        <ChartWrapper>
+          <Scatter data={chartData} options={chartOptions} />
+        </ChartWrapper>
+      </div>
+      <div className="link-container">
+        <NavLink to="/excel" className="link">
+          Visual Excel Point Data
+        </NavLink>
       </div>
     </div>
   );
