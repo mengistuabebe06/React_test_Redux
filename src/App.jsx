@@ -11,7 +11,7 @@ function App() {
     <>
       <HashRouter>
         <Routes>
-          <Route path="/field" element={<ListFieldRandomPoints />} />
+          <Route path="/" element={<ListFieldRandomPoints />} />
           <Route path="/excel" element={<ExcelRandomPointsList />} />
         </Routes>
       </HashRouter>
