@@ -21,7 +21,7 @@ const ExcelRandomPointsList = () => {
   console.log(excelpoints);
 
   const [pointsData, setPointsData] = useState([]);
-  const [fetchError, setFetchError] = useState(null); // Renamed from 'error' to 'fetchError'
+  const [fetchError, setFetchError] = useState(null);
 
   const sendpointData = {
     side: 100,
@@ -35,14 +35,10 @@ const ExcelRandomPointsList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (success && excelpoints?.response?.listOfPoints) {
-      setPointsData(
-        excelpoints?.response?.listOfPoints?.map(([x, y]) => ({ x, y }))
-      );
-    } else {
-      setFetchError(error || "Error fetching random points"); // Updated state setter
-    }
-  }, [success, excelpoints, error]);
+    setPointsData(
+      excelpoints?.response?.listOfPoints?.map(([x, y]) => ({ x, y }))
+    );
+  }, [excelpoints]);
 
   const chartData = {
     datasets: [

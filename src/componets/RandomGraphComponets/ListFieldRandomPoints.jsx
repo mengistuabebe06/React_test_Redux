@@ -26,10 +26,8 @@ const ListFieldRandomPoints = () => {
   const [pointsData, setPointsData] = useState([]);
 
   const sendpointData = {
-    side: 100,
+    side: 10,
     selection: 5,
-    choice: 0,
-    value: 10,
   };
 
   useEffect(() => {
@@ -37,14 +35,10 @@ const ListFieldRandomPoints = () => {
   }, []);
 
   useEffect(() => {
-    if (filedpoints.success && filedpoints.response.listOfPoints) {
-      setPointsData(
-        filedpoints?.response?.listOfPoints?.map(([x, y]) => ({ x, y }))
-      );
-    } else {
-      setFetchError(error || "Error fetching random points");
-    }
-  }, [success, filedpoints]);
+    setPointsData(
+      filedpoints?.response?.listOfPoints?.map(([x, y]) => ({ x, y }))
+    );
+  }, [filedpoints]);
 
   const chartData = {
     datasets: [
