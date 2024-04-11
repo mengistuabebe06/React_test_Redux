@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Chart, registerables } from "chart.js";
 import { useDispatch, useSelector } from "react-redux";
 import { listExcelPoints } from "../../action/randomgraphAction";
+import { NavLink } from "react-router-dom";
 
 Chart.register(...registerables);
 
@@ -69,9 +70,14 @@ const ExcelRandomPointsList = () => {
   if (fetchError) return <div>Error: {fetchError}</div>; // Updated to use 'fetchError'
 
   return (
-    <ChartWrapper>
-      <Scatter data={chartData} options={chartOptions} />
-    </ChartWrapper>
+    <div>
+      <ChartWrapper>
+        <Scatter data={chartData} options={chartOptions} />
+      </ChartWrapper>
+      <div>
+        <NavLink to="/">Visual Field Point Data </NavLink>
+      </div>
+    </div>
   );
 };
 
