@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://mengistuabebe06.github.io/React_Test/",
+  "homepage": "https://mengistuabebe06.github.io/React_test_Redux/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
