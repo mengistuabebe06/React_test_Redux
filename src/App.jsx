@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import React from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import ListFieldRandomPoints from "./componets/RandomGraphComponets/ListFieldRandomPoints";
 import ExcelRandomPointsList from "./componets/RandomGraphComponets/ExcelRandomPointsList";
 
 function App() {
   return (
     <div className="container">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<ListFieldRandomPoints />} />
           <Route path="/excel" element={<ExcelRandomPointsList />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
