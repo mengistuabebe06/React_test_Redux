@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import ListFieldRandomPoints from "./componets/RandomGraphComponets/ListFieldRandomPoints";
 import ExcelRandomPointsList from "./componets/RandomGraphComponets/ExcelRandomPointsList";
+import "./App.css";
 
 function App() {
   return (
